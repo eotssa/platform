@@ -1,12 +1,11 @@
-import { signIn, signOut, useSession } from "next-auth/react"
 import Head from "next/head"
-import Link from "next/link"
 
-import { api } from "~/utils/api"
-import styles from "./index.module.css"
-import { Button } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
+import { AppShell, Burger, Button } from "@mantine/core"
 
 export default function Home() {
+  const [opened, { toggle }] = useDisclosure()
+
   return (
     <>
       <Head>
@@ -15,7 +14,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Button> Hello World</Button>
+        {/* <Button> Hello World</Button> */}
+        <AppShell
+          header={{ height: 60 }}
+          navbar={{
+            width: 300,
+            breakpoint: "sm",
+            collapsed: { mobile: !opened },
+          }}
+          padding="md"
+        >
+          <AppShell.Header>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <div>Logo</div>
+          </AppShell.Header>
+
+          <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+
+          <AppShell.Main>Main</AppShell.Main>
+        </AppShell>
+        );
       </main>
     </>
   )

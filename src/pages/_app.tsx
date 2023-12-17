@@ -20,7 +20,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
